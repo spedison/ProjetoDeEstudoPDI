@@ -12,15 +12,18 @@
     <name>pdi</name>
 
     <modules>
-        <module>outros/pre-java</module>
+        <module>pre-java</module>
         <module>jcodec</module>
         <module>pdi/biblioteca_pdi</module>
         <module>pdi/biblioteca_pdi_swing</module>
         <module>pdi/biblioteca_pdi_javafx</module>
         <module>curso_pdi</module>
+        <!--
+        Projetos correlatos que vou ajustando e adicionando.
         <module>outros/exemplos_jfreechart</module>
         <module>outros/fft-2d</module>
-        <module>outros/sistemaLineares</module>
+        <module>outros/sistemaLineares</module> -->
+
     </modules>
 
     <properties>
