@@ -1,7 +1,5 @@
 package br.com.spedison.biblioteca_pdi.auxiliar;
 
-import java.util.Arrays;
-
 public class ByteData {
 
     static public String convertToHexString(byte val) {
@@ -9,9 +7,17 @@ public class ByteData {
     }
 
     static public String convertToHexString(byte[] val) {
+        return convertToHexString(val, "");
+    }
+
+    static public String convertToHexString(byte[] val, final String sep) {
         final StringBuffer ret = new StringBuffer();
-        for (byte item : val) {
-            ret.append("%02X".formatted(item));
+
+        for (byte aByte : val) {
+            if (ret.length() != 0) {
+                ret.append(sep);
+            }
+            ret.append("%02X".formatted(aByte));
         }
         return ret.toString();
     }

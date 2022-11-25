@@ -5,6 +5,9 @@ import br.com.spedison.biblioteca_pdi.base.enuns.Interpolacao;
 
 import java.awt.*;
 
+/***
+ * Pega uma imagem carregada e ajusta o tamanho usando a bilioteca java (Sem as transformações implementadas)
+ */
 public class ImagemTamanhoAjustado extends Imagem {
 
     private double percentualX = 0.5;
@@ -59,7 +62,7 @@ public class ImagemTamanhoAjustado extends Imagem {
     }
 
     public void setPercentualX(double percentualX) {
-        this.percentualX = percentualX;
+        this.percentualX = Math.abs(percentualX);
     }
 
     public double getPercentualY() {
@@ -67,7 +70,7 @@ public class ImagemTamanhoAjustado extends Imagem {
     }
 
     public void setPercentualY(double percentualY) {
-        this.percentualY = percentualY;
+        this.percentualY = Math.abs(percentualY);
     }
 
     public Interpolacao getInterpolacao() {
@@ -85,14 +88,12 @@ public class ImagemTamanhoAjustado extends Imagem {
         Graphics2D g = (Graphics2D) img.getGraphics();
 
         switch (interpolacao) {
-            case Linear:
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                break;
-            case Cubica:
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-                break;
-            case IterpolacaoVizinhosProximos:
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+            case Linear ->
+                    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            case Cubica ->
+                    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            case IterpolacaoVizinhosProximos ->
+                    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
         }
 
         g.drawImage(getImageBuffer(), 0, 0, img.getLargura(), img.getAltura(), null);

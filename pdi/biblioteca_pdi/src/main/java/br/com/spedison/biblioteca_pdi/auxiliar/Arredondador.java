@@ -38,7 +38,7 @@ public class Arredondador {
         }
     }
 
-    public static int maiorNumeroEmModulo(double valor) {
+    public static int proximoNumeroInteiroEmModulo(double valor) {
         if (Math.signum(valor) < 0) {
             return (int) Math.floor(valor);
         } else {
