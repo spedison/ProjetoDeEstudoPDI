@@ -1,0 +1,10 @@
+.classpath
+.project
+.settings
+target
+tmp/*
+outros/*
+*.patch
+.idea/
+*.iml
+.DS_Store
