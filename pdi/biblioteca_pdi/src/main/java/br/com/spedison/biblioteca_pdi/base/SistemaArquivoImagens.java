@@ -82,11 +82,11 @@ public class SistemaArquivoImagens {
         return arquivo.mkdirs();
     }
 
-    public boolean criaDirSaida(String... dirs) {
+    public SistemaArquivoImagens criaDirSaida(String... dirs) {
         File arquivo = Paths.get(this.diretorioSaida, dirs).toFile();
-        if (arquivo.exists())
-            return true;
-        return arquivo.mkdirs();
+        if (!arquivo.exists())
+            arquivo.mkdirs();
+        return this;
     }
 
     public boolean removeArquivosSaida(String... dirs) {
@@ -102,8 +102,10 @@ public class SistemaArquivoImagens {
         return ret[0];
     }
 
-    public boolean criaDirs() {
-        return criaDirSaida() && criaDirEntrada();
+    public SistemaArquivoImagens criaDirs() {
+        criaDirSaida();
+        criaDirEntrada();
+        return this;
     }
 
     public File[] getListaArquivosImagensEntrada(String[] ext, String... dirs) {

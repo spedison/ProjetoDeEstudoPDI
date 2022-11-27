@@ -3,8 +3,6 @@ package br.com.spedison.biblioteca_pdi.base;
 import br.com.spedison.biblioteca_pdi.auxiliar.Downloader;
 import br.com.spedison.biblioteca_pdi.auxiliar.MD5;
 import br.com.spedison.biblioteca_pdi.base.enuns.Interpolacao;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
@@ -44,14 +42,10 @@ public class ImagemTamanhoAjustadoTest {
         assertEquals(Interpolacao.Linear, ita.getInterpolacao());
     }
 
-    @Before
-    public void carregaArquivos() {
-        boolean baixou = Downloader.downloadFile(urlToDownload, arquivoParaTrabalhar);
-        assertTrue("Não conseguiu baixar o arquivo do repositorio : " + urlToDownload, baixou);
-    }
 
     @Test
     public void testAjustaTamanho() {
+        realizarDownloadArquivos();
         ImagemTamanhoAjustado ita = new ImagemTamanhoAjustado(arquivoParaTrabalhar, 0.2, 0.2);
         ita.salva(arquivoReduzido);
 
@@ -60,10 +54,17 @@ public class ImagemTamanhoAjustadoTest {
 
         assertEquals("F5329C1A82066234854C95EE0B039C79", md5ArquivoParaTrabalhar);
         assertEquals("5A89D140E6747F3F36FCF4C3DEF56F8B", md5ArquivoReduzido);
+        apagarArquivos();
     }
 
-    @After
-    public void limpeza() {
+    private void realizarDownloadArquivos() {
+        System.out.println("Realizando download arquivo de teste.");
+        boolean baixou = Downloader.downloadFile(urlToDownload, arquivoParaTrabalhar);
+        assertTrue("Não conseguiu baixar o arquivo do repositorio : " + urlToDownload, baixou);
+    }
+
+    private void apagarArquivos() {
+        System.out.println("Limpando diretório");
         (new File(arquivoParaTrabalhar)).delete();
         (new File(arquivoReduzido)).delete();
     }

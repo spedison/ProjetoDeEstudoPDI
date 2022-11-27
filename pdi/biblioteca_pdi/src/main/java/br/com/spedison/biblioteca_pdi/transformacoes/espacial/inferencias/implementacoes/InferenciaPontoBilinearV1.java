@@ -79,6 +79,6 @@ public class InferenciaPontoBilinearV1 implements InferenciaPonto {
 
     @Override
     public String getNome() {
-        return "InferenciaPontoBilinearV1";
+        return "InferenciaBilinearV1";
     }
 }

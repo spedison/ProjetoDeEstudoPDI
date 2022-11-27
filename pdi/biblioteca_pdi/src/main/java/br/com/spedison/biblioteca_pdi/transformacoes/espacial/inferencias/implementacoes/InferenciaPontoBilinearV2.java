@@ -234,6 +234,6 @@ public class InferenciaPontoBilinearV2 implements InferenciaPonto {
 
     @Override
     public String getNome() {
-        return "InferenciaPontoBilinearV2";
+        return "InferenciaBilinearV2";
     }
 }

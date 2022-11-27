@@ -397,18 +397,36 @@ public class Imagem implements Cloneable {
 
         Imagem imagem = (Imagem) o;
 
+        if (imagem.getAltura() != this.getAltura()) return false;
+        if (imagem.getLargura() != this.getLargura()) return false;
+
+        imagem.guardaOrigem();
+        this.guardaOrigem();
+
+        setOrigemX(0);
+        setOrigemY(0);
+        imagem.setOrigemX(0);
+        imagem.setOrigemY(0);
+
+        // Tamanho diferente ... retorna false.
         if (this.getAltura() != imagem.getAltura()) return false;
         if (this.getLargura() != imagem.getLargura()) return false;
+
         boolean[] igual = {true};
-        IntStream.range(0, getAltura()).filter(v -> igual[0]).forEach(
-                posY -> {
-                    IntStream.range(0, getLargura()).filter(v -> igual[0]).forEach(
-                            posX -> {
-                                igual[0] &= getRGB(posX, posY) == imagem.getRGB(posX, posY);
-                            }
-                    );
-                }
-        );
+        // Se algum pixel for diferente, sai.
+        getStreamLargura()
+                .filter(v -> igual[0])
+                .forEach(
+                        posX -> {
+                            getStreamAltura()
+                                    .filter(v -> igual[0])
+                                    .forEach(
+                                            posY -> {
+                                                igual[0] &= getRGB(posX, posY) == imagem.getRGB(posX, posY);
+                                            }
+                                    );
+                        }
+                );
         return igual[0];
     }
 

@@ -259,6 +259,6 @@ public class InferenciaPontoCubica implements InferenciaPonto {
 
     @Override
     public String getNome() {
-        return "InferenciaPontoCubicaV2";
+        return "InferenciaBiCubica";
     }
 }

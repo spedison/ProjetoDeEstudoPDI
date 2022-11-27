@@ -1,7 +1,12 @@
 package br.com.spedison.biblioteca_pdi.base;
 
+import br.com.spedison.biblioteca_pdi.padroes.ProcessaPadrao;
+
 import java.awt.*;
 
+/***
+ * Essa classe gera padrões com uma estrutura geral implementando somente uma função da interface funcional.
+ */
 public class ImagemGeradorPadrao extends Imagem {
 
     public ImagemGeradorPadrao(int xLen, int yLen) {
@@ -14,11 +19,6 @@ public class ImagemGeradorPadrao extends Imagem {
 
     public ImagemGeradorPadrao(int xLen, int yLen, int rgbCorFundo, int type) {
         super(xLen, yLen, rgbCorFundo, type);
-    }
-
-    @FunctionalInterface
-    public static interface ProcessaPadrao {
-        int[] processaPadrao(Point p, int[] rgb);
     }
 
     public void processa(ProcessaPadrao p) {

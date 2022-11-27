@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.io.File;
 
+// TODO: Completar o teste.
 public class ImagemTest {
 
     String arquivoTrabalho = "cafeteira_vermelha.png";

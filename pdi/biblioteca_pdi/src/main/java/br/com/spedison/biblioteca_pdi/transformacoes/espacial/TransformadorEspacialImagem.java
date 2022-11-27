@@ -98,8 +98,6 @@ public class TransformadorEspacialImagem extends Imagem {
         this.setOrigemY(origemOrigY);
         inferenciaPonto.setImagem(this);
 
-        List<ResutadoProcessamentoLocal> lr = new Vector<>();
-
         destino
                 .getStreamAltura()
                 .parallel()
@@ -118,8 +116,6 @@ public class TransformadorEspacialImagem extends Imagem {
                                                 else
                                                     destino.setRGB(posXDestino, posYDestino, corPadrao);
 
-                                                if (!r.getMsgError().equals("Ponto Processado com Sucesso."))
-                                                    lr.add(new ResutadoProcessamentoLocal(r.getPonto(), r.getMsgError()));
                                             }
                                     );
                         }
