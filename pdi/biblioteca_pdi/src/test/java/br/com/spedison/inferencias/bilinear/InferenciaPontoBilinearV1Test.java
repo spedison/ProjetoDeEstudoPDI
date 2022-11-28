@@ -1,9 +1,10 @@
 package br.com.spedison.inferencias.bilinear;
 
-import br.com.spedison.biblioteca_pdi.auxiliar.Arredondador;
+
 import br.com.spedison.biblioteca_pdi.base.Imagem;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.ResultadoInferencia;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.implementacoes.InferenciaPontoBilinearV1;
+import br.com.spedison.usogeral.auxiliar.Arredondador;
 import org.junit.Assert;
 import org.junit.Test;
 

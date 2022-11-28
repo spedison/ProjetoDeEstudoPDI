@@ -1,6 +1,6 @@
 package br.com.spedison.biblioteca_pdi.transformacoes.pixel.convolucao;
 
-import br.com.spedison.biblioteca_pdi.auxiliar.Arredondador;
+import br.com.spedison.usogeral.auxiliar.Arredondador;
 import br.com.spedison.biblioteca_pdi.base.enuns.CanalProcessado;
 import br.com.spedison.biblioteca_pdi.base.Imagem;
 import br.com.spedison.biblioteca_pdi.transformacoes.pixel.convolucao.kernels.TipoKernelInterface;

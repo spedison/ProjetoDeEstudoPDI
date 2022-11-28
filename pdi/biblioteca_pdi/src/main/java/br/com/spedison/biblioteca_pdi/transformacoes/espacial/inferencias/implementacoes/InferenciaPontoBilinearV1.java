@@ -1,6 +1,6 @@
 package br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.implementacoes;
 
-import br.com.spedison.biblioteca_pdi.auxiliar.Arredondador;
+import br.com.spedison.usogeral.auxiliar.Arredondador;
 import br.com.spedison.biblioteca_pdi.base.Imagem;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.InferenciaPonto;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.ResultadoInferencia;

@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.spedison</groupId>
-    <artifactId>pdi</artifactId>
+    <artifactId>ppdi</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
-    <name>pdi</name>
+    <name>ppdi</name>
 
     <modules>
         <module>pre-java</module>
@@ -17,13 +17,16 @@
         <module>pdi/biblioteca_pdi</module>
         <module>pdi/biblioteca_pdi_swing</module>
         <module>pdi/biblioteca_pdi_javafx</module>
+        <module>pdi/usogeral</module>
         <module>curso_pdi</module>
+        <module>convolucao</module>
+        <module>MostraGraficos</module>
+
         <!--
         Projetos correlatos que vou ajustando e adicionando.
         <module>outros/exemplos_jfreechart</module>
         <module>outros/fft-2d</module>
         <module>outros/sistemaLineares</module> -->
-
     </modules>
 
     <properties>

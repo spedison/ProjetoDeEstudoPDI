@@ -16,8 +16,10 @@ module br.com.spedison.biblioteca_pdi {
     exports br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias;
     exports br.com.spedison.biblioteca_pdi.base.operacoes_entre_imagens;
     exports br.com.spedison.biblioteca_pdi.transformacoes.pixel.interfaces;
+    exports br.com.spedison.biblioteca_pdi.padroes;
     requires java.desktop;
     requires commons.io;
     requires commons.math3;
     requires org.apache.commons.lang3;
+    requires br.com.spedison.usogeral;
 }

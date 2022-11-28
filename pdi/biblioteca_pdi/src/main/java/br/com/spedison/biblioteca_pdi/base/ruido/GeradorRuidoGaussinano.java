@@ -1,6 +1,6 @@
 package br.com.spedison.biblioteca_pdi.base.ruido;
 
-import br.com.spedison.biblioteca_pdi.auxiliar.Arredondador;
+import br.com.spedison.usogeral.auxiliar.Arredondador;
 import br.com.spedison.biblioteca_pdi.base.ruido.interfaces.GeradorRuido;
 
 import java.util.Random;

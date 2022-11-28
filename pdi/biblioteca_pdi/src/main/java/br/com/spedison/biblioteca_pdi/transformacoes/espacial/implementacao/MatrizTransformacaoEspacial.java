@@ -1,8 +1,8 @@
 package br.com.spedison.biblioteca_pdi.transformacoes.espacial.implementacao;
 
-import br.com.spedison.biblioteca_pdi.auxiliar.Arredondador;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
+import br.com.spedison.usogeral.auxiliar.Arredondador;
 
 public abstract class MatrizTransformacaoEspacial {
 
