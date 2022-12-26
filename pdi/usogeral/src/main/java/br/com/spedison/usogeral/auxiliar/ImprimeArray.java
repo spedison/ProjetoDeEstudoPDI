@@ -29,11 +29,74 @@ public class ImprimeArray {
         return ret.toString();
     }
 
+    static public String strLong2D(long[][] dado) {
+        StringBuffer ret = new StringBuffer();
+        IntStream.range(0, dado.length).forEach(
+                posX -> {
+                    IntStream.range(0, dado[posX].length).forEach(posY -> {
+                        ret.append(String.format("%d\t", dado[posX][posY]));
+                    });
+                    ret.append("\n");
+                }
+        );
+        return ret.toString();
+    }
+
     static public String strDouble2D(double[][] dado) {
         return strDouble2D(dado, 10, 3);
     }
 
+    static public String strDouble(double[] dado) {
+        return strDouble(dado, 10, 3);
+    }
+
+    static public String strFloat(float[] dado) {
+        return strFloat(dado, 10, 3);
+    }
+
+    static public String strFloat2D(float[][] dado) {
+        return strFloat2D(dado, 10, 3);
+    }
+
     static public String strDouble2D(double[][] dado, int tamanho, int precisao) {
+        String strFormat = String.format("%%%d.%df\t", tamanho, precisao);
+        final StringBuffer ret = new StringBuffer();
+        IntStream.range(0, dado.length).forEach(
+                posX -> {
+                    IntStream.range(0, dado[posX].length).forEach(posY -> {
+                        ret.append(String.format(strFormat, dado[posX][posY]));
+                    });
+                    ret.append("\n");
+                }
+        );
+        return ret.toString();
+    }
+
+    static public String strDouble(double[] dado, int tamanho, int precisao) {
+        String strFormat = String.format("%%%d.%df\t", tamanho, precisao);
+        final StringBuffer ret = new StringBuffer();
+        IntStream.range(0, dado.length).forEach(
+                posX -> {
+                    ret.append(String.format(strFormat, dado[posX]));
+                    ret.append("\n");
+                }
+        );
+        return ret.toString();
+    }
+
+    static public String strFloat(float[] dado, int tamanho, int precisao) {
+        String strFormat = String.format("%%%d.%df\t", tamanho, precisao);
+        final StringBuffer ret = new StringBuffer();
+        IntStream.range(0, dado.length).forEach(
+                posX -> {
+                    ret.append(String.format(strFormat, dado[posX]));
+                    ret.append("\n");
+                }
+        );
+        return ret.toString();
+    }
+
+    static public String strFloat2D(float[][] dado, int tamanho, int precisao) {
         String strFormat = String.format("%%%d.%df\t", tamanho, precisao);
         final StringBuffer ret = new StringBuffer();
         IntStream.range(0, dado.length).forEach(

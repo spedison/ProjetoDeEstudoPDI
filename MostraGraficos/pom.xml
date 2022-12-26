@@ -19,10 +19,33 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.erichseifert.gral</groupId>
-            <artifactId>gral-core</artifactId>
-            <version>0.11</version>
+            <groupId>org.knowm.xchart</groupId>
+            <artifactId>xchart</artifactId>
+            <version>3.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>11.0.2</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>org.knowm.xchart.standalone.JavaFXDemo</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

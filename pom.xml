@@ -19,8 +19,8 @@
         <module>pdi/biblioteca_pdi_javafx</module>
         <module>pdi/usogeral</module>
         <module>curso_pdi</module>
-        <module>convolucao</module>
-        <module>MostraGraficos</module>
+        <module>pds</module>
+
 
         <!--
         Projetos correlatos que vou ajustando e adicionando.
