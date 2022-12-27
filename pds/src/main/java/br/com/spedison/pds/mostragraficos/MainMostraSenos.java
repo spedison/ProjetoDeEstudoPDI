@@ -1,4 +1,4 @@
-package br.com.spedison.mostragraficos;
+package br.com.spedison.pds.mostragraficos;
 
 
 import javax.swing.*;

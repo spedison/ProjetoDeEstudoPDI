@@ -1,4 +1,4 @@
-package br.com.spedison;
+package br.com.spedison.pds;
 
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;

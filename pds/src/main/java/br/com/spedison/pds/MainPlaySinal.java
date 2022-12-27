@@ -1,4 +1,4 @@
-package br.com.spedison;
+package br.com.spedison.pds;
 
 import br.com.spedison.usogeral.auxiliar.Downloader;
 

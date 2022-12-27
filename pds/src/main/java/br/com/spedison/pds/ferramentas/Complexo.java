@@ -1,24 +1,21 @@
-package br.com.spedison.fourier;
+package br.com.spedison.pds.ferramentas;
 
 public class Complexo {
+
+    final static public Complexo Zero = new Complexo(0., 0.);
+    final static public Complexo Um = new Complexo(1., 1.);
+
     public double getReal() {
         return real;
     }
 
-    public void setReal(double real) {
-        this.real = real;
-    }
 
     public double getImaginario() {
         return imaginario;
     }
 
-    public void setImaginario(double imaginario) {
-        this.imaginario = imaginario;
-    }
-
-    double real;
-    double imaginario;
+    private double real;
+    private double imaginario;
 
     public Complexo(double real, double imaginario) {
         this.real = real;
@@ -29,14 +26,12 @@ public class Complexo {
         return Math.sqrt(Math.pow(imaginario, 2.) + Math.pow(real, 2.));
     }
 
-    public double getTeta() {
+    public double getTheta() {
         return Math.atan2(imaginario, real);
     }
 
     public Complexo mutiplica(double escalar) {
-        real *= escalar;
-        imaginario *= escalar;
-        return this;
+        return new Complexo(this.real * escalar, this.imaginario * escalar);
     }
 
     public Complexo mutiplica(Complexo valor) {
@@ -44,31 +39,27 @@ public class Complexo {
         var v2I = valor.getImaginario() * getReal();
         var v3I = valor.getReal() * getImaginario();
         var v4R = -1. * valor.getImaginario() * getImaginario();
-        this.setImaginario(v2I + v3I);
-        this.setReal(v1R + v4R);
-        return this;
+        return new Complexo(v1R + v4R, v2I + v3I);
     }
 
     public Complexo soma(Complexo valor) {
-        this.real += valor.real;
-        this.imaginario += valor.imaginario;
-        return this;
+        return new Complexo(this.real + valor.real,
+                this.imaginario + valor.imaginario);
     }
 
     public Complexo soma(double real) {
-        this.real += real;
-        return this;
+        return new Complexo(this.real + real, this.imaginario);
     }
 
     public static Complexo exp(double imaginario) {
-        var ret = new Complexo(Math.cos(2. * Math.PI * Math.abs(imaginario)), Math.sin(2. * Math.PI * Math.abs(imaginario)));
-        if (Math.signum(imaginario) > 0.)
-            ret.setImaginario(-1 * ret.getImaginario());
+        var ret = new Complexo(Math.cos(2. * Math.PI * Math.abs(imaginario)),
+                (Math.signum(imaginario) > 0. ? -1. : 1.) *
+                        Math.sin(2. * Math.PI * Math.abs(imaginario)));
         return ret;
     }
 
     public static Complexo getIdentidade() {
-        return new Complexo(0., 0.);
+        return Zero;
     }
 
     @Override

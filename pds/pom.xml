@@ -36,6 +36,14 @@
             <version>3.8.2</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 
@@ -70,7 +78,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>br.com.spedison.Main</mainClass>
+                            <mainClass>br.com.spedison.pds.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,7 +1,8 @@
-package br.com.spedison.continuo;
+package br.com.spedison.pds.fourier;
 
 
-import br.com.spedison.fourier.Complexo;
+import br.com.spedison.pds.ferramentas.CalculaIntegralComplexa;
+import br.com.spedison.pds.ferramentas.Complexo;
 import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
@@ -26,9 +27,12 @@ public class MainMostraSerieDeFourierDoSinal {
         final var tempoFim = +tempoAnalisado / 2.;
         final var tempoDelta = (tempoFim - tempoInicio) / 300_000.;
         var integral = new CalculaIntegralComplexa();
-        return integral.getIntegral(tempoInicio, tempoFim, tempoDelta, (tempo) ->
-                Complexo.exp(1./phy).mutiplica(calculaPontoNoTempo(tempo)).mutiplica(1/tempo)
-        ).getModulo();//Imaginario();
+        CalculaIntegralComplexa.Funcao1Complexa funcao1Complexa = (tempo) -> Complexo.exp(1. / phy).mutiplica(calculaPontoNoTempo(tempo)).mutiplica(1 / tempo);
+        integral.setFuncaoComplexa(funcao1Complexa);
+        integral.setPasso(tempoDelta);
+        return integral
+                .getIntegral(tempoInicio, tempoFim)
+                .getModulo();//Imaginario();
     }
 
     public static void mainFrequencia(String[] args) throws Exception {
@@ -75,8 +79,8 @@ public class MainMostraSerieDeFourierDoSinal {
         double[] yData; // = new double[1000];
 
         int tamanho = 10_000;
-        double inicio = -limiteTempo/2.;
-        double fim = limiteTempo/2.;
+        double inicio = -limiteTempo / 2.;
+        double fim = limiteTempo / 2.;
 
         xData = IntStream
                 .range(0, tamanho)
