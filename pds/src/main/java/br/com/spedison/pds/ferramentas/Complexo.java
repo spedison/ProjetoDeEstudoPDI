@@ -52,9 +52,7 @@ public class Complexo {
     }
 
     public static Complexo exp(double imaginario) {
-        var ret = new Complexo(Math.cos(2. * Math.PI * Math.abs(imaginario)),
-                (Math.signum(imaginario) > 0. ? -1. : 1.) *
-                        Math.sin(2. * Math.PI * Math.abs(imaginario)));
+        var ret = new Complexo(Math.cos(imaginario), Math.sin(imaginario));
         return ret;
     }
 

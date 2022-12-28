@@ -14,46 +14,53 @@ import java.util.stream.IntStream;
 public class MainMostraSerieDeFourierDoSinal {
 
     static double A = 14.D;
-    static double limiteTempo = 1. * (1. / (900.));
+
+    // Frequencia fundamental. (Tamanho)
+    static double l = 1. / 900.;
+
 
     static double calculaPontoNoTempo(double x) {
-        return A * 1. * Math.sin(2 * Math.PI * 900. * x) +
-                A * 1. * Math.sin(2. * Math.PI * 3110. * x);
+        final double omega = 2. * Math.PI * 900.;
+        return A * 1. * Math.sin(omega * x);//+ // n = 1
+        //A * 1. * Math.sin(2. * Math.PI * 1890. * x); // n= 2.1
     }
 
-    static double calculaPontoNaFrequencia(double phy) {
-        final var tempoAnalisado = 1. * limiteTempo;
-        final var tempoInicio = -tempoAnalisado / 2.;
-        final var tempoFim = +tempoAnalisado / 2.;
-        final var tempoDelta = (tempoFim - tempoInicio) / 300_000.;
+    static Complexo calculaPontoNaFrequencia(double n, double l) {
+        final var tempoInicio = -l;
+        final var tempoFim = +l;
+        final var passoIntegracao = (2. * l) / 700_000.;
         var integral = new CalculaIntegralComplexa();
-        CalculaIntegralComplexa.Funcao1Complexa funcao1Complexa = (tempo) -> Complexo.exp(1. / phy).mutiplica(calculaPontoNoTempo(tempo)).mutiplica(1 / tempo);
+        CalculaIntegralComplexa.Funcao1Complexa funcao1Complexa = (tempo) -> Complexo.exp(-n * Math.PI * tempo / l).mutiplica(calculaPontoNoTempo(tempo));
         integral.setFuncaoComplexa(funcao1Complexa);
-        integral.setPasso(tempoDelta);
+        integral.setPasso(passoIntegracao);
         return integral
                 .getIntegral(tempoInicio, tempoFim)
-                .getModulo();//Imaginario();
+                .mutiplica(1. / (2. * l));
     }
 
     public static void mainFrequencia(String[] args) throws Exception {
         double[] xData; // = new double[1000];
         double[] yData; // = new double[1000];
-        double tamanho = 6_000;
-        double inicio = -6_000.;
-        double fim = Math.abs(inicio);
+        int tamanho = 6_000;
 
+
+        // Calcula as frequencias usadas para colocar no gráfico.
         xData = IntStream
-                .range(0, (int) tamanho)
-                .mapToDouble(x -> (double) x)
-                .map(x -> ((fim - inicio) * (x / tamanho)) + inicio).toArray();
+                .range(-tamanho / 2, tamanho / 2)
+                .mapToDouble(x -> x / 1000.)
+                .map(x -> x / (2. * l))
+                .toArray();
 
-        yData = Arrays
-                .stream(xData)
+        System.out.println("Frequencias preenchidas.");
+
+        yData = IntStream.range(-tamanho / 2, tamanho / 2)
+                .mapToDouble(x -> x / 1000.)
                 .map(x -> {
-                    System.out.println("Processamendo Frequencia " + x);
+                    System.out.println("Processamendo Frequencia " + (x / (2. * l)));
                     return x;
                 })
-                .map(MainMostraSerieDeFourierDoSinal::calculaPontoNaFrequencia)
+                .mapToObj(n -> calculaPontoNaFrequencia(n, l))
+                .mapToDouble(Complexo::getModulo)
                 .toArray(); //x -> 10 * Math.sin(x * 50) * 10 * Math.sin(x + 1.)).toArray();
         //var yData2 = Arrays.stream(xData).map(x -> 40. * Math.sin(x)).
         //        toArray(); //x -> 10 * Math.sin(x * 50) * 10 * Math.sin(x + 1.)).toArray();
@@ -69,9 +76,9 @@ public class MainMostraSerieDeFourierDoSinal {
 // Show it
         new SwingWrapper<>(chart).displayChart();
 // Save it
-        BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
+        //BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
 // or save it in high-res
-        BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
+        //BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
     }
 
     public static void mainTempo(String[] args) throws Exception {
@@ -79,8 +86,8 @@ public class MainMostraSerieDeFourierDoSinal {
         double[] yData; // = new double[1000];
 
         int tamanho = 10_000;
-        double inicio = -limiteTempo / 2.;
-        double fim = limiteTempo / 2.;
+        double inicio = -l / 2.;
+        double fim = l / 2.;
 
         xData = IntStream
                 .range(0, tamanho)
@@ -113,11 +120,11 @@ public class MainMostraSerieDeFourierDoSinal {
     }
 
     private static void mainCalcula1Frequencia(String[] args) {
-        double valorEm1700Vezes2Pi = calculaPontoNaFrequencia(2 * Math.PI * 1700.);
-        double valorEm1700 = calculaPontoNaFrequencia(1700.);
+        double valorEm1700Vezes2Pi = calculaPontoNaFrequencia(1., 1. / 900.).getImaginario();
+        double valorEm1700 = calculaPontoNaFrequencia(1700. / 900., 1. / 900.).getImaginario();
 
-        double valorEm1200Vezes2Pi = calculaPontoNaFrequencia(2 * Math.PI * 1200.);
-        double valorEm1200 = calculaPontoNaFrequencia(1200.);
+        double valorEm1200Vezes2Pi = calculaPontoNaFrequencia(1.1, 1. / 900.).getImaginario();
+        double valorEm1200 = calculaPontoNaFrequencia(1200. / 900., 1. / 900.).getImaginario();
 
         System.out.println("valorEm1700 = " + valorEm1700);
         System.out.println("valorEm1700Vezes2Pi = " + valorEm1700Vezes2Pi);
