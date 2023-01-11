@@ -1,7 +1,7 @@
 package br.com.spedison.biblioteca_pdi_testes.transformacoes.pixel.convolucao.kernels;
 
 import br.com.spedison.biblioteca_pdi.transformacoes.pixel.convolucao.kernels.TipoKernelGaussiano;
-import br.com.spedison.usogeral.auxiliar.ImprimeArray;
+import br.com.spedison.usogeral.ImprimeArray;
 import org.junit.Assert;
 import org.junit.Test;
 

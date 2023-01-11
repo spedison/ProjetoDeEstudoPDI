@@ -1,6 +1,6 @@
 package br.com.spedison.pds;
 
-import br.com.spedison.usogeral.auxiliar.MatrizAuxiliar;
+import br.com.spedison.usogeral.MatrizAuxiliar;
 
 import java.util.Objects;
 import java.util.stream.IntStream;

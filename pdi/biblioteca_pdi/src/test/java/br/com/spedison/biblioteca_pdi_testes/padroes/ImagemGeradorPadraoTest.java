@@ -1,7 +1,7 @@
 package br.com.spedison.biblioteca_pdi_testes.padroes;
 
 
-import br.com.spedison.usogeral.auxiliar.MD5;
+import br.com.spedison.usogeral.MD5;
 import br.com.spedison.biblioteca_pdi.base.Imagem;
 import br.com.spedison.biblioteca_pdi.base.ImagemGeradorPadrao;
 import br.com.spedison.biblioteca_pdi.base.SistemaArquivoImagens;

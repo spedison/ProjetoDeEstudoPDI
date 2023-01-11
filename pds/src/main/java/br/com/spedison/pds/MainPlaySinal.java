@@ -1,6 +1,6 @@
 package br.com.spedison.pds;
 
-import br.com.spedison.usogeral.auxiliar.Downloader;
+import br.com.spedison.usogeral.Downloader;
 
 import javax.sound.sampled.*;
 import java.io.*;

@@ -1,5 +1,5 @@
 module br.com.spedison.usogeral {
-    exports br.com.spedison.usogeral.auxiliar;
-    exports br.com.spedison.usogeral.auxiliar.wave;
-    exports br.com.spedison.usogeral.auxiliar.sinais;
+    exports br.com.spedison.usogeral;
+    exports br.com.spedison.usogeral.sinais;
+    exports br.com.spedison.usogeral.wave;
 }

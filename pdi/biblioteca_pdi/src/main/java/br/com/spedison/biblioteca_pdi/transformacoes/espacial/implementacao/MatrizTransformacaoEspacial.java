@@ -2,7 +2,7 @@ package br.com.spedison.biblioteca_pdi.transformacoes.espacial.implementacao;
 
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
-import br.com.spedison.usogeral.auxiliar.Arredondador;
+import br.com.spedison.usogeral.Arredondador;
 
 public abstract class MatrizTransformacaoEspacial {
 

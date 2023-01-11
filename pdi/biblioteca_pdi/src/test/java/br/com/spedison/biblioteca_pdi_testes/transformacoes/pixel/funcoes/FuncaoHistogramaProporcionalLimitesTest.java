@@ -3,7 +3,7 @@ package br.com.spedison.biblioteca_pdi_testes.transformacoes.pixel.funcoes;
 import br.com.spedison.biblioteca_pdi.base.HistogramaImagem;
 import br.com.spedison.biblioteca_pdi.base.Imagem;
 import br.com.spedison.biblioteca_pdi.transformacoes.pixel.funcoes.FuncaoHistogramaProporcionalLimites;
-import br.com.spedison.usogeral.auxiliar.Arredondador;
+import br.com.spedison.usogeral.Arredondador;
 import org.junit.Assert;
 import org.junit.Test;
 

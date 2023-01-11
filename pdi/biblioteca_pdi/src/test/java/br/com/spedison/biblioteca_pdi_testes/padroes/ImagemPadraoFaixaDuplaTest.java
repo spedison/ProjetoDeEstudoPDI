@@ -1,7 +1,7 @@
 package br.com.spedison.biblioteca_pdi_testes.padroes;
 
 import br.com.spedison.biblioteca_pdi.padroes.ImagemPadraoFaixaDupla;
-import br.com.spedison.usogeral.auxiliar.MD5;
+import br.com.spedison.usogeral.MD5;
 import br.com.spedison.biblioteca_pdi.base.SistemaArquivoImagens;
 import org.junit.After;
 import org.junit.Assert;

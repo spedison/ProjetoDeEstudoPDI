@@ -1,5 +1,6 @@
-package br.com.spedison.usogeral.auxiliar;
+package br.com.spedison.usogeral_testes;
 
+import br.com.spedison.usogeral.ImprimeArray;
 import org.junit.Assert;
 import org.junit.Test;
 

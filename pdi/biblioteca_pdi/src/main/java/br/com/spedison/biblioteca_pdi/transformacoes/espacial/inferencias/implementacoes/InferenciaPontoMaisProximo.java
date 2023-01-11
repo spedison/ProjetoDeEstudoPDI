@@ -4,7 +4,7 @@ import br.com.spedison.biblioteca_pdi.base.Imagem;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.InferenciaPonto;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.ResultadoInferencia;
 
-import static br.com.spedison.usogeral.auxiliar.Arredondador.*;
+import static br.com.spedison.usogeral.Arredondador.*;
 
 /***
  */

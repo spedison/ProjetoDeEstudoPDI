@@ -1,26 +1,9 @@
 package br.com.spedison.pds.ferramentas;
 
-public class Complexo {
+public record Complexo (double real, double imaginario){
 
     final static public Complexo Zero = new Complexo(0., 0.);
     final static public Complexo Um = new Complexo(1., 1.);
-
-    public double getReal() {
-        return real;
-    }
-
-
-    public double getImaginario() {
-        return imaginario;
-    }
-
-    private double real;
-    private double imaginario;
-
-    public Complexo(double real, double imaginario) {
-        this.real = real;
-        this.imaginario = imaginario;
-    }
 
     public double getModulo() {
         return Math.sqrt(Math.pow(imaginario, 2.) + Math.pow(real, 2.));
@@ -35,10 +18,10 @@ public class Complexo {
     }
 
     public Complexo mutiplica(Complexo valor) {
-        var v1R = valor.getReal() * getReal();
-        var v2I = valor.getImaginario() * getReal();
-        var v3I = valor.getReal() * getImaginario();
-        var v4R = -1. * valor.getImaginario() * getImaginario();
+        var v1R = valor.real() * real();
+        var v2I = valor.imaginario() * real();
+        var v3I = valor.real() * imaginario();
+        var v4R = -1. * valor.imaginario() * imaginario();
         return new Complexo(v1R + v4R, v2I + v3I);
     }
 
@@ -51,17 +34,21 @@ public class Complexo {
         return new Complexo(this.real + real, this.imaginario);
     }
 
-    public static Complexo exp(double imaginario) {
+    public static Complexo expPositivo(double imaginario) {
         var ret = new Complexo(Math.cos(imaginario), Math.sin(imaginario));
         return ret;
     }
 
-    public static Complexo getIdentidade() {
-        return Zero;
+    public static Complexo expNegativo(double imaginario) {
+        var ret = new Complexo(Math.cos(imaginario), -Math.sin(imaginario));
+        return ret;
     }
 
-    @Override
-    public String toString() {
-        return "%.12f\t%.12f\n".formatted(real, imaginario);
+    public static Complexo getZero() {
+        return Zero;
     }
+    public static Complexo getUm() {
+        return Um;
+    }
+
 }

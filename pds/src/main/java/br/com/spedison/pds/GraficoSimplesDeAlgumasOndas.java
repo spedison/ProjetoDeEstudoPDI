@@ -1,7 +1,7 @@
 package br.com.spedison.pds;
 
-import br.com.spedison.usogeral.auxiliar.sinais.Sinal;
-import br.com.spedison.usogeral.auxiliar.sinais.SinalSomaSenos;
+import br.com.spedison.usogeral.sinais.Sinal;
+import br.com.spedison.usogeral.sinais.SinalSomaSenos;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;

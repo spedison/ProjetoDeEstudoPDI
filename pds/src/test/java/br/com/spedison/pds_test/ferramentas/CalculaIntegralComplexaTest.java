@@ -24,8 +24,8 @@ public class CalculaIntegralComplexaTest {
         var fim = System.currentTimeMillis();
 
         Assert.assertEquals(0., 0., 0.00001);
-        Assert.assertEquals(0., r.getImaginario(), 0.001);
-        Assert.assertEquals(666.66666666666, r.getReal(), 0.00000001);
+        Assert.assertEquals(0., r.imaginario(), 0.001);
+        Assert.assertEquals(666.66666666666, r.real(), 0.00000001);
         System.out.println("Tempo gasto T1 foi %d ms".formatted(fim - inicio));
 
         calculaIntegralComplexa.setFuncaoComplexa(funcao2);
@@ -34,8 +34,8 @@ public class CalculaIntegralComplexaTest {
         fim = System.currentTimeMillis();
 
 
-        Assert.assertEquals(r.getImaginario(), r.getReal(), 0.0000001);
-        Assert.assertEquals(4E4, r.getImaginario(), 0.001);
+        Assert.assertEquals(r.imaginario(), r.real(), 0.0000001);
+        Assert.assertEquals(4E4, r.imaginario(), 0.001);
         System.out.println("Tempo gasto T2 foi %d ms".formatted(fim - inicio));
 
     }

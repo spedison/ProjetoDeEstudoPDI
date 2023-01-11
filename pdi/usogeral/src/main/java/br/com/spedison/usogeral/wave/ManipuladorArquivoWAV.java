@@ -1,6 +1,8 @@
-package br.com.spedison.usogeral.auxiliar.wave;
+package br.com.spedison.usogeral.wave;
 
-import br.com.spedison.usogeral.auxiliar.*;
+import br.com.spedison.usogeral.Downloader;
+import br.com.spedison.usogeral.ImprimeArray;
+import br.com.spedison.usogeral.MatrizAuxiliar;
 
 import java.io.*;
 import java.nio.file.Paths;

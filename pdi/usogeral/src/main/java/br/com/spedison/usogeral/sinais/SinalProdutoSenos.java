@@ -1,4 +1,4 @@
-package br.com.spedison.usogeral.auxiliar.sinais;
+package br.com.spedison.usogeral.sinais;
 
 import java.util.stream.IntStream;
 
@@ -22,4 +22,10 @@ public class SinalProdutoSenos implements Sinal {
                 soma[0] *= (amplitudes[pos] * Math.sin(frequencias[pos] * t)));
         return soma[0];
     }
+
+    @Override
+    public String getNome() {
+        return "Sinal Produtos de Senos";
+    }
+
 }

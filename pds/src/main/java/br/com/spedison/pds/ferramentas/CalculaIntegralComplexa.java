@@ -30,7 +30,7 @@ public class CalculaIntegralComplexa {
                         .mapToDouble(i -> (i * passo) + inicio)
                         .mapToObj(x -> new TrapezioRetangulo(passo, funcaoComplexa.fx(x), funcaoComplexa.fx(x + passo)))
                         .map(TrapezioRetangulo::getArea)
-                        .reduce(Complexo.getIdentidade(), Complexo::soma);
+                        .reduce(Complexo.getZero(), Complexo::soma);
         return ret;
     }
 }

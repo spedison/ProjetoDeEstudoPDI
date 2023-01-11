@@ -1,8 +1,8 @@
 package br.com.spedison.pds;
 
-import br.com.spedison.usogeral.auxiliar.MatrizAuxiliar;
-import br.com.spedison.usogeral.auxiliar.wave.DadosArquivoWAV;
-import br.com.spedison.usogeral.auxiliar.wave.ManipuladorArquivoWAV;
+import br.com.spedison.usogeral.MatrizAuxiliar;
+import br.com.spedison.usogeral.wave.DadosArquivoWAV;
+import br.com.spedison.usogeral.wave.ManipuladorArquivoWAV;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;

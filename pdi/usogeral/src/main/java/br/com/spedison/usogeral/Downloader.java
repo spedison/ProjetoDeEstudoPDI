@@ -1,4 +1,4 @@
-package br.com.spedison.usogeral.auxiliar;
+package br.com.spedison.usogeral;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;

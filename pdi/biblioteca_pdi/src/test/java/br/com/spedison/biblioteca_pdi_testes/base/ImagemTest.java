@@ -2,7 +2,7 @@ package br.com.spedison.biblioteca_pdi_testes.base;
 
 
 import br.com.spedison.biblioteca_pdi.base.SistemaArquivoImagens;
-import br.com.spedison.usogeral.auxiliar.Downloader;
+import br.com.spedison.usogeral.Downloader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

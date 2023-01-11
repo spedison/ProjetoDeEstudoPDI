@@ -1,7 +1,7 @@
 package br.com.spedison.biblioteca_pdi_testes.transformacoes.espacial;
 
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.TransformadorEspacialImagem;
-import br.com.spedison.usogeral.auxiliar.MD5;
+import br.com.spedison.usogeral.MD5;
 import br.com.spedison.biblioteca_pdi.base.Imagem;
 import br.com.spedison.biblioteca_pdi.base.SistemaArquivoImagens;
 import br.com.spedison.biblioteca_pdi_testes.comum.CriaImagensReferencia;

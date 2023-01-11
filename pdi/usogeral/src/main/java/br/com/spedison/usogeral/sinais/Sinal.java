@@ -1,4 +1,4 @@
-package br.com.spedison.usogeral.auxiliar.sinais;
+package br.com.spedison.usogeral.sinais;
 
 import java.util.stream.IntStream;
 
@@ -14,6 +14,12 @@ public interface Sinal {
      * @return
      */
     double calculaAmplitude(double t);
+
+    /***
+     * Nome do sinal para que possa ser utilizado para exibir, por exemplo, em gráficos.
+     * @return nome / descritivo do sinal
+     */
+    String getNome();
 
     /***
      * O Sinal é basicamente uma função no espaço do Real 1 -> Real 1.
@@ -38,4 +44,5 @@ public interface Sinal {
                 );
         return dadosSaida;
     }
+
 }

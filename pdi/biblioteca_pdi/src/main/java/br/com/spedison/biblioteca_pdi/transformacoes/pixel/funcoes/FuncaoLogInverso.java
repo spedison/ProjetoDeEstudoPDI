@@ -1,6 +1,6 @@
 package br.com.spedison.biblioteca_pdi.transformacoes.pixel.funcoes;
 
-import br.com.spedison.usogeral.auxiliar.Arredondador;
+import br.com.spedison.usogeral.Arredondador;
 
 public class FuncaoLogInverso extends FuncaoBase {
 

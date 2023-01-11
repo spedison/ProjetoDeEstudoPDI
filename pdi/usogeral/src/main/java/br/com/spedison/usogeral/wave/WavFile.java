@@ -1,4 +1,4 @@
-package br.com.spedison.usogeral.auxiliar.wave;
+package br.com.spedison.usogeral.wave;
 
 // Wav file IO class
 // A.Greensted

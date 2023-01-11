@@ -1,9 +1,9 @@
 package br.com.spedison.biblioteca_pdi_testes.transformacoes.espacial.implementacao;
 
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.implementacao.MatrizTransformacaoRotacao;
-import br.com.spedison.usogeral.auxiliar.Arredondador;
-import br.com.spedison.usogeral.auxiliar.Downloader;
-import br.com.spedison.usogeral.auxiliar.MD5;
+import br.com.spedison.usogeral.Arredondador;
+import br.com.spedison.usogeral.Downloader;
+import br.com.spedison.usogeral.MD5;
 import br.com.spedison.biblioteca_pdi.base.SistemaArquivoImagens;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.InferenciaPonto;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.implementacoes.*;

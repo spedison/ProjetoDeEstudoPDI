@@ -1,4 +1,4 @@
-package br.com.spedison.usogeral.auxiliar.sinais;
+package br.com.spedison.usogeral.sinais;
 
 public class SinalDenteDeSerra implements Sinal {
 
@@ -23,5 +23,10 @@ public class SinalDenteDeSerra implements Sinal {
                 (coeficienteAngular * tempoDaOndaAtual + coeficienteLinear) :
                 ((Math.abs(tempoDaOnda) - tempoDaOndaAtual) * coeficienteAngular + coeficienteLinear);
 
+    }
+
+    @Override
+    public String getNome() {
+        return "Sinal Dente de Serra com tempo %f e Coeficiente Angular %f e Coeficiente Linear %f".formatted(tempoDaOnda, coeficienteAngular, coeficienteLinear);
     }
 }

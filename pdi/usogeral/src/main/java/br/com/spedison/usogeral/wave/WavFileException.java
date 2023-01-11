@@ -1,4 +1,4 @@
-package br.com.spedison.usogeral.auxiliar.wave;
+package br.com.spedison.usogeral.wave;
 
 public class WavFileException extends Exception
 {

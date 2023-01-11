@@ -1,4 +1,4 @@
-package br.com.spedison.usogeral.auxiliar.sinais;
+package br.com.spedison.usogeral.sinais;
 
 public class SinalRetangular implements Sinal {
 
@@ -24,5 +24,10 @@ public class SinalRetangular implements Sinal {
         return (Math.signum(t) >= 0.) ?
                 (tempoOnda <= fracaoNoMaximo * tempoDaOnda ? amplitudeTempo1 : amplitudeTempo2) :
                 (tempoOnda <= fracaoNoMaximo * tempoDaOnda ? amplitudeTempo2 : amplitudeTempo1);
+    }
+
+    @Override
+    public String getNome() {
+        return "Sinal retangular com tempo %f com relacao %f e %f".formatted(tempoDaOnda, fracaoNoMaximo, 1. - fracaoNoMaximo);
     }
 }

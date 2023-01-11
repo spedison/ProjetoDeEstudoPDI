@@ -3,7 +3,8 @@ package br.com.spedison.pds.fourier;
 
 import br.com.spedison.pds.ferramentas.CalculaIntegralComplexa;
 import br.com.spedison.pds.ferramentas.Complexo;
-import org.knowm.xchart.BitmapEncoder;
+import br.com.spedison.usogeral.sinais.Sinal;
+import br.com.spedison.usogeral.sinais.SinalRetangular;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
@@ -13,24 +14,31 @@ import java.util.stream.IntStream;
 
 public class MainMostraSerieDeFourierDoSinal {
 
-    static double A = 14.D;
+    static double A = 20.D;
 
     // Frequencia fundamental. (Tamanho)
-    static double l = 1. / 900.;
+    //static double l = 1. / 900.;
+    static final double tempoBase = 1. / 900.;
+    static final double frequanciaBase = 1. / tempoBase;
+    static final double lAnalise = 1. / 1800.;
 
+    //private static Sinal senos = new SinalSomaSenos(new double[]{A, A / 2., A / 3.}, new double[]{frequanciaBase, frequanciaBase * 5., frequanciaBase * 9.});
+    private static Sinal senos = new SinalRetangular(tempoBase, 0.5, 0., 10.);
+
+    //SinalSomaSenos(new double[]{A, A / 2., A / 3.}, new double[]{frequanciaBase, frequanciaBase * 5., frequanciaBase * 9.});
+    //private static SinalSomaSenos senos = new SinalSomaSenos(new double[]{A}, new double[]{frequanciaBase});
 
     static double calculaPontoNoTempo(double x) {
-        final double omega = 2. * Math.PI * 900.;
-        return A * 1. * Math.sin(omega * x);//+ // n = 1
-        //A * 1. * Math.sin(2. * Math.PI * 1890. * x); // n= 2.1
+        return senos.calculaAmplitude(x);
     }
 
     static Complexo calculaPontoNaFrequencia(double n, double l) {
-        final var tempoInicio = -l;
-        final var tempoFim = +l;
-        final var passoIntegracao = (2. * l) / 700_000.;
+        final var tempoInicio = 0;
+        final var tempoFim = 2 * l;
+        final var passoIntegracao = l / 1_000_000.;
         var integral = new CalculaIntegralComplexa();
-        CalculaIntegralComplexa.Funcao1Complexa funcao1Complexa = (tempo) -> Complexo.exp(-n * Math.PI * tempo / l).mutiplica(calculaPontoNoTempo(tempo));
+        CalculaIntegralComplexa.Funcao1Complexa funcao1Complexa =
+                (tempo) -> Complexo.expNegativo((n * Math.PI * tempo) / l).mutiplica(calculaPontoNoTempo(tempo));
         integral.setFuncaoComplexa(funcao1Complexa);
         integral.setPasso(passoIntegracao);
         return integral
@@ -41,32 +49,35 @@ public class MainMostraSerieDeFourierDoSinal {
     public static void mainFrequencia(String[] args) throws Exception {
         double[] xData; // = new double[1000];
         double[] yData; // = new double[1000];
-        int tamanho = 6_000;
+        int tamanho = 150;
 
 
         // Calcula as frequencias usadas para colocar no gráfico.
         xData = IntStream
-                .range(-tamanho / 2, tamanho / 2)
-                .mapToDouble(x -> x / 1000.)
-                .map(x -> x / (2. * l))
+                .range(-tamanho, tamanho)
+                .mapToDouble(x -> x) // N inteiro
+                .map(x -> x / (2. * lAnalise)) // F = n / ( 2 . l )
                 .toArray();
 
         System.out.println("Frequencias preenchidas.");
 
-        yData = IntStream.range(-tamanho / 2, tamanho / 2)
-                .mapToDouble(x -> x / 1000.)
+        yData = IntStream.range(-tamanho, tamanho)
+                .mapToDouble(x -> x)
                 .map(x -> {
-                    System.out.println("Processamendo Frequencia " + (x / (2. * l)));
+                    System.out.println("Processamendo Frequencia " + (x / (lAnalise * 2.)));
                     return x;
                 })
-                .mapToObj(n -> calculaPontoNaFrequencia(n, l))
+                .mapToObj(n -> calculaPontoNaFrequencia(n, lAnalise))
                 .mapToDouble(Complexo::getModulo)
                 .toArray(); //x -> 10 * Math.sin(x * 50) * 10 * Math.sin(x + 1.)).toArray();
-        //var yData2 = Arrays.stream(xData).map(x -> 40. * Math.sin(x)).
-        //        toArray(); //x -> 10 * Math.sin(x * 50) * 10 * Math.sin(x + 1.)).toArray();
 
 // Create Chart
         XYChart chart = QuickChart.getChart("Análise do Sinal", "Phy", "Amplitude de Phy", "Transf. Fourier F(x)", xData, yData);
+
+        /*chart.getStyler().setSeriesLines(new BasicStroke[]{SeriesLines.DOT_DOT});
+        chart.getStyler().setMarkerSize(5);
+        chart.getStyler().setMark  (Color.RED);*/
+
         //chart.addSeries("Seno Normal", xData, yData2);
         //chart.getSeriesMap().get("Seno Normal").setMarker(SeriesMarkers.NONE);
         //chart.getSeriesMap().get("Seno Normal").setLineWidth(1.F);
@@ -85,12 +96,12 @@ public class MainMostraSerieDeFourierDoSinal {
         double[] xData; // = new double[1000];
         double[] yData; // = new double[1000];
 
-        int tamanho = 10_000;
-        double inicio = -l / 2.;
-        double fim = l / 2.;
+        int tamanho = 500;
+        double inicio = 0;
+        double fim = tempoBase;
 
         xData = IntStream
-                .range(0, tamanho)
+                .rangeClosed(0, tamanho)
                 .mapToDouble(x -> (fim - inicio) * ((double) x / (double) tamanho) + inicio)
                 .toArray();
 
@@ -107,10 +118,9 @@ public class MainMostraSerieDeFourierDoSinal {
         new SwingWrapper<>(chart).displayChart();
 
 // Save it
-        BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
-
+//        BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapEncoder.BitmapFormat.PNG);
 // or save it in high-res
-        BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
+//        BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapEncoder.BitmapFormat.PNG, 300);
     }
 
     public static void main(String[] args) throws Exception {
@@ -120,11 +130,11 @@ public class MainMostraSerieDeFourierDoSinal {
     }
 
     private static void mainCalcula1Frequencia(String[] args) {
-        double valorEm1700Vezes2Pi = calculaPontoNaFrequencia(1., 1. / 900.).getImaginario();
-        double valorEm1700 = calculaPontoNaFrequencia(1700. / 900., 1. / 900.).getImaginario();
+        double valorEm1700Vezes2Pi = calculaPontoNaFrequencia(1., 1. / 900.).imaginario();
+        double valorEm1700 = calculaPontoNaFrequencia(1700. / 900., 1. / 900.).imaginario();
 
-        double valorEm1200Vezes2Pi = calculaPontoNaFrequencia(1.1, 1. / 900.).getImaginario();
-        double valorEm1200 = calculaPontoNaFrequencia(1200. / 900., 1. / 900.).getImaginario();
+        double valorEm1200Vezes2Pi = calculaPontoNaFrequencia(1.1, 1. / 900.).imaginario();
+        double valorEm1200 = calculaPontoNaFrequencia(1200. / 900., 1. / 900.).imaginario();
 
         System.out.println("valorEm1700 = " + valorEm1700);
         System.out.println("valorEm1700Vezes2Pi = " + valorEm1700Vezes2Pi);

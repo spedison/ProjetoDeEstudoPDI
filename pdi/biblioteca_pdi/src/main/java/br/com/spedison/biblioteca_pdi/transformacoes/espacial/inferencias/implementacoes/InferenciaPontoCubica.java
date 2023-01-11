@@ -1,6 +1,6 @@
 package br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.implementacoes;
 
-import br.com.spedison.usogeral.auxiliar.Arredondador;
+import br.com.spedison.usogeral.Arredondador;
 import br.com.spedison.biblioteca_pdi.base.Imagem;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.InferenciaPonto;
 import br.com.spedison.biblioteca_pdi.transformacoes.espacial.inferencias.ResultadoInferencia;
@@ -134,7 +134,7 @@ public class InferenciaPontoCubica implements InferenciaPonto {
         if (processaPontoExato(pontoImagemX, pontoImagemY, resultado)) return;
 
         Point[] pontos = criaPontos(pontoImagemX, pontoImagemY);
-        RealMatrix[] matrixPrincipalEInversa = null;
+        RealMatrix[] matrixPrincipalEInversa;
         try {
             matrixPrincipalEInversa = preencheMatrixPrincipal(pontos);
         } catch (SingularMatrixException e) {
@@ -225,7 +225,7 @@ public class InferenciaPontoCubica implements InferenciaPonto {
     private int definePrimeiroPontoUsadoParaInferencia(double ponto, int origem, int limite) {
         int retPonto = Arredondador.menorNumeroProximoInt(ponto) - 1;
 
-        if (Math.abs((double) (retPonto - ponto)) < 1.5)
+        if (Math.abs(retPonto - ponto) < 1.5)
             retPonto--;
 
         if (retPonto < origem) {
