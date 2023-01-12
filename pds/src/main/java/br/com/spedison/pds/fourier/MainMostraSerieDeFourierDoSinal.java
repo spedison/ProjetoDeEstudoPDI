@@ -1,8 +1,8 @@
 package br.com.spedison.pds.fourier;
 
 
-import br.com.spedison.pds.ferramentas.CalculaIntegralComplexa;
-import br.com.spedison.pds.ferramentas.Complexo;
+import br.com.spedison.pds.auxiliar.CalculaIntegralComplexa;
+import br.com.spedison.pds.auxiliar.Complexo;
 import br.com.spedison.usogeral.sinais.Sinal;
 import br.com.spedison.usogeral.sinais.SinalRetangular;
 import org.knowm.xchart.QuickChart;
@@ -14,16 +14,11 @@ import java.util.stream.IntStream;
 
 public class MainMostraSerieDeFourierDoSinal {
 
-    static double A = 20.D;
-
-    // Frequencia fundamental. (Tamanho)
-    //static double l = 1. / 900.;
     static final double tempoBase = 1. / 900.;
-    static final double frequanciaBase = 1. / tempoBase;
     static final double lAnalise = 1. / 1800.;
 
     //private static Sinal senos = new SinalSomaSenos(new double[]{A, A / 2., A / 3.}, new double[]{frequanciaBase, frequanciaBase * 5., frequanciaBase * 9.});
-    private static Sinal senos = new SinalRetangular(tempoBase, 0.5, 0., 10.);
+    private static final Sinal senos = new SinalRetangular(tempoBase, 0.5, 0., 10.);
 
     //SinalSomaSenos(new double[]{A, A / 2., A / 3.}, new double[]{frequanciaBase, frequanciaBase * 5., frequanciaBase * 9.});
     //private static SinalSomaSenos senos = new SinalSomaSenos(new double[]{A}, new double[]{frequanciaBase});
@@ -46,7 +41,7 @@ public class MainMostraSerieDeFourierDoSinal {
                 .mutiplica(1. / (2. * l));
     }
 
-    public static void mainFrequencia(String[] args) throws Exception {
+    public static void mainFrequencia(String[] args) {
         double[] xData; // = new double[1000];
         double[] yData; // = new double[1000];
         int tamanho = 150;
@@ -63,10 +58,7 @@ public class MainMostraSerieDeFourierDoSinal {
 
         yData = IntStream.range(-tamanho, tamanho)
                 .mapToDouble(x -> x)
-                .map(x -> {
-                    System.out.println("Processamendo Frequencia " + (x / (lAnalise * 2.)));
-                    return x;
-                })
+                .peek(x -> System.out.println("Processamendo Frequencia " + (x / (lAnalise * 2.))))
                 .mapToObj(n -> calculaPontoNaFrequencia(n, lAnalise))
                 .mapToDouble(Complexo::getModulo)
                 .toArray(); //x -> 10 * Math.sin(x * 50) * 10 * Math.sin(x + 1.)).toArray();

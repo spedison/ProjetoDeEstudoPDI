@@ -1,4 +1,4 @@
-package br.com.spedison.pds;
+package br.com.spedison.pds.convolucao;
 
 import br.com.spedison.usogeral.MatrizAuxiliar;
 import br.com.spedison.usogeral.wave.DadosArquivoWAV;
@@ -65,7 +65,7 @@ public class MainConvolucaoEImpressaoArquivoWave {
                 convolucaoParaImprimir,
                 1. / multiplicador, false, dw.sampleRate);
 
-        final SwingWrapper<XYChart> sw = new SwingWrapper<XYChart>(chart);
+        final SwingWrapper<XYChart> sw = new SwingWrapper<>(chart);
         sw.displayChart();
 
         /*while (true) {

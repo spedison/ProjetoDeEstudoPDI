@@ -1,4 +1,4 @@
-package br.com.spedison.pds.ferramentas;
+package br.com.spedison.pds.auxiliar;
 
 import java.util.stream.IntStream;
 
@@ -17,13 +17,13 @@ public class CalculaIntegralComplexa {
     }
 
     @FunctionalInterface
-    public static interface Funcao1Complexa {
+    public interface Funcao1Complexa {
         Complexo fx(double real);
     }
 
     public Complexo getIntegral(double inicio, double fim) {
         final int passos = (int) Math.ceil((fim - inicio) / passo) ;
-        Complexo ret =
+        return
                 IntStream
                         .range(0, passos)
                         .parallel()
@@ -31,6 +31,5 @@ public class CalculaIntegralComplexa {
                         .mapToObj(x -> new TrapezioRetangulo(passo, funcaoComplexa.fx(x), funcaoComplexa.fx(x + passo)))
                         .map(TrapezioRetangulo::getArea)
                         .reduce(Complexo.getZero(), Complexo::soma);
-        return ret;
     }
 }

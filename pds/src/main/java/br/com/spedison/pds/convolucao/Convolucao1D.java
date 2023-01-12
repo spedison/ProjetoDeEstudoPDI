@@ -1,4 +1,4 @@
-package br.com.spedison.pds;
+package br.com.spedison.pds.convolucao;
 
 import br.com.spedison.usogeral.MatrizAuxiliar;
 
@@ -46,11 +46,9 @@ public class Convolucao1D {
         IntStream
                 .range(0, entrada.length)
                 .parallel()
-                .forEach(posProc -> {
-                    IntStream
-                            .rangeClosed(-kernel.length / 2, kernel.length / 2)
-                            .forEach(k -> ret[posProc] += getData(entrada, posProc + k) * kernel[k + (kernel.length / 2)]);
-                });
+                .forEach(posProc -> IntStream
+                        .rangeClosed(-kernel.length / 2, kernel.length / 2)
+                        .forEach(k -> ret[posProc] += getData(entrada, posProc + k) * kernel[k + (kernel.length / 2)]));
 
         return ret;
     }
@@ -73,16 +71,14 @@ public class Convolucao1D {
         IntStream
                 .range(0, entradaParaProcessar.length)
                 .parallel()
-                .forEach(posProc -> {
-                    IntStream
-                            .rangeClosed(-kernel.length / 2, kernel.length / 2)
-                            .forEach(k ->
-                                    IntStream
-                                            .range(0, canais)
-                                            .forEach(canal ->
-                                                    ret[posProc][canal] += (getData(entradaParaProcessar, posProc + k, canal) * kernel[k + (kernel.length / 2)]))
-                            );
-                });
+                .forEach(posProc -> IntStream
+                        .rangeClosed(-kernel.length / 2, kernel.length / 2)
+                        .forEach(k ->
+                                IntStream
+                                        .range(0, canais)
+                                        .forEach(canal ->
+                                                ret[posProc][canal] += (getData(entradaParaProcessar, posProc + k, canal) * kernel[k + (kernel.length / 2)]))
+                        ));
 
         return ret;
     }

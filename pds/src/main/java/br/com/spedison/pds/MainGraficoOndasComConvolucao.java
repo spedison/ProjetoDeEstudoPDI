@@ -1,5 +1,6 @@
 package br.com.spedison.pds;
 
+import br.com.spedison.pds.convolucao.Convolucao1D;
 import br.com.spedison.usogeral.sinais.Sinal;
 import br.com.spedison.usogeral.sinais.SinalSomaSenos;
 import org.knowm.xchart.QuickChart;
@@ -33,7 +34,7 @@ public class MainGraficoOndasComConvolucao {
 
         chart.getStyler().setSeriesColors(new Color[]{Color.RED, Color.CYAN});
 
-        final SwingWrapper<XYChart> sw = new SwingWrapper<XYChart>(chart);
+        final SwingWrapper<XYChart> sw = new SwingWrapper<>(chart);
         sw.displayChart();
 
     }

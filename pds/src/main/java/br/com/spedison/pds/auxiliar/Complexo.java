@@ -1,4 +1,4 @@
-package br.com.spedison.pds.ferramentas;
+package br.com.spedison.pds.auxiliar;
 
 public record Complexo (double real, double imaginario){
 
@@ -35,13 +35,11 @@ public record Complexo (double real, double imaginario){
     }
 
     public static Complexo expPositivo(double imaginario) {
-        var ret = new Complexo(Math.cos(imaginario), Math.sin(imaginario));
-        return ret;
+        return new Complexo(Math.cos(imaginario), Math.sin(imaginario));
     }
 
     public static Complexo expNegativo(double imaginario) {
-        var ret = new Complexo(Math.cos(imaginario), -Math.sin(imaginario));
-        return ret;
+        return new Complexo(Math.cos(imaginario), -Math.sin(imaginario));
     }
 
     public static Complexo getZero() {

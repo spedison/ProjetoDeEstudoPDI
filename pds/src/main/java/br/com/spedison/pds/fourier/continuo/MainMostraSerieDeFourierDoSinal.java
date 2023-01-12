@@ -1,12 +1,11 @@
-package br.com.spedison.pds.continuo;
+package br.com.spedison.pds.fourier.continuo;
 
 
-import br.com.spedison.pds.ferramentas.CalculaIntegralComplexa;
-import br.com.spedison.pds.ferramentas.Complexo;
+import br.com.spedison.pds.auxiliar.CalculaIntegralComplexa;
+import br.com.spedison.pds.auxiliar.Complexo;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
-import org.knowm.xchart.XYSeries;
 import org.knowm.xchart.style.Styler;
 import org.knowm.xchart.style.lines.SeriesLines;
 import org.knowm.xchart.style.markers.SeriesMarkers;
@@ -32,7 +31,7 @@ public class MainMostraSerieDeFourierDoSinal {
                 .mutiplica(1. / (2. * l));
     }
 
-    public static void mainFrequencia(String[] args) throws Exception {
+    public static void mainFrequencia(String[] args) {
         double[] xData;
         double[] yDataImaginario;
         int tamanho = 200;
@@ -48,10 +47,7 @@ public class MainMostraSerieDeFourierDoSinal {
 
         var yDataComplexo = IntStream.range(-tamanho, tamanho)
                 .mapToDouble(x -> x)
-                .map(x -> {
-                    System.out.println("Processamendo Frequência " + (x / (CaracteristicasSinal.tempoBaseAnalise * 2.)));
-                    return x;
-                })
+                .peek(x -> System.out.println("Processamendo Frequência " + (x / (CaracteristicasSinal.tempoBaseAnalise * 2.))))
                 .mapToObj(n -> calculaPontoNaFrequencia(n, CaracteristicasSinal.tempoBaseAnalise))
                 // .mapToDouble(Complexo::imaginario)
                 .toArray(Complexo[]::new);
@@ -72,6 +68,13 @@ public class MainMostraSerieDeFourierDoSinal {
         serieReal.setMarker(SeriesMarkers.CROSS);
         serieReal.setMarkerColor(Color.GREEN);
         serieReal.setLineStyle(SeriesLines.NONE);
+
+        chart.addSeries(CaracteristicasSinal.sinal.getNome() + "(Módulo)",xData, yDataModulo);
+        var serieModulo = chart.getSeriesMap().get(CaracteristicasSinal.sinal.getNome() + "(Módulo)");
+        serieModulo.setMarker(SeriesMarkers.DIAMOND);
+        serieModulo.setMarkerColor(Color.BLUE);
+        serieModulo.setLineStyle(SeriesLines.NONE);
+
 
 
         chart.getStyler().setZoomEnabled(true); // Habilita o Zoom

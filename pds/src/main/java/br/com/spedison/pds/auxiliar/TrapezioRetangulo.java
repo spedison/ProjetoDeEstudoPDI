@@ -1,4 +1,4 @@
-package br.com.spedison.pds.ferramentas;
+package br.com.spedison.pds.auxiliar;
 
 public record TrapezioRetangulo(double h, Complexo p1, Complexo p2) {
     public Complexo getArea() {

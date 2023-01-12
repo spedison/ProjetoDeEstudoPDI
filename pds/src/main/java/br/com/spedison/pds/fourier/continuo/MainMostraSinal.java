@@ -1,4 +1,4 @@
-package br.com.spedison.pds.continuo;
+package br.com.spedison.pds.fourier.continuo;
 
 
 import org.knowm.xchart.QuickChart;
@@ -10,7 +10,7 @@ import org.knowm.xchart.style.markers.SeriesMarkers;
 
 public class MainMostraSinal {
 
-    public static void mainTempo(String[] args) throws Exception {
+    public static void mainTempo(String[] args) {
 
         int tamanho = 10_000;
         double inicio = 0;
@@ -33,7 +33,7 @@ public class MainMostraSinal {
         // Para não mostrar a legenda.
         //chart.getStyler().setLegendVisible(false);
 // Show it
-        SwingWrapper janelaDoGraficoDeSinal = new SwingWrapper<>(chart);
+        SwingWrapper<XYChart> janelaDoGraficoDeSinal = new SwingWrapper<>(chart);
         janelaDoGraficoDeSinal.setTitle("Gráficos para análise de sinais");
         janelaDoGraficoDeSinal.displayChart();
 
